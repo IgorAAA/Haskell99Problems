@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import ListsPart1
 
 main :: IO ()
-main = someFunc
+main = putStrLn "Hello world" -- TBD

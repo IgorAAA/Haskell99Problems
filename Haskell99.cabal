@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d88edb2675cb90c02ea254fe65e0a5a89e42617384b15f733bfb5ab1b9233d0a
+-- hash: 91b8f3302d720297e95c3d59876f942bfc2a2b78953d237da4a88813dcbb71d4
 
 name:           Haskell99
 version:        0.1.0.0
@@ -27,13 +27,14 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      ListsPart1
   other-modules:
       Paths_Haskell99
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , vector
   default-language: Haskell2010
 
 executable Haskell99-exe
@@ -46,6 +47,7 @@ executable Haskell99-exe
   build-depends:
       Haskell99
     , base >=4.7 && <5
+    , vector
   default-language: Haskell2010
 
 test-suite Haskell99-test
@@ -59,4 +61,5 @@ test-suite Haskell99-test
   build-depends:
       Haskell99
     , base >=4.7 && <5
+    , vector
   default-language: Haskell2010
