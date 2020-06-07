@@ -25,8 +25,10 @@ myLast'' = foldr1 (const id)
 
 -- P2 (*) Find the last but one element of a list.
 lastButOne :: [a] -> a
+lastButOne [] = error "Empty List"
+lastButOne [a] = error "List length < 2"
 lastButOne [x, _] = x
-lastButOne (_ : xs) = myLastUnsafe xs
+lastButOne (_ : xs) = lastButOne xs
 
 lastButOne' :: [a] -> a
 lastButOne' = fst . foldl (\(a, b) x -> (b, x)) (err1, err2)
@@ -83,7 +85,7 @@ compress [] = []
 compress (x : xs) = fst $ foldr (\el (acc, lastEl) -> if el == lastEl then (acc, el) else (el : acc, el)) ([x], x) xs
 
 compress' :: Eq a => [a] -> [a]
-compress' = map head . group 
+compress' = map head . group
 
 -- P9 (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
 pack :: Eq a => [a] -> [[a]]
@@ -96,8 +98,8 @@ pack'' :: Eq a => [a] -> [[a]]
 pack'' [] = []
 pack'' (x : xs) = (x : first) : pack'' rest
                   where (first, rest) = span (== x) xs
-        
--- P10 (*) Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. 
+
+-- P10 (*) Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method.
 -- Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 encode :: Eq a => [a] -> [(Int, a)]
 encode [] = []

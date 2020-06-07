@@ -1,2 +1,6 @@
+
+import qualified ListsPart1Spec as L
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented"
+main = L.main'
+
