@@ -49,6 +49,7 @@ findSize :: [a] -> Int
 findSize = foldr (\_ acc -> acc + 1) 0
 
 findSize' :: [a] -> Int
+findSize' [] = 0
 findSize' xs = fst $ last $ fromList $ zip [1 .. ] xs
 
 -- P5 (*) Reverse a list
@@ -68,7 +69,8 @@ isPalindrome' = (==) <*> reverse
 isPalindrome'' :: Eq a => [a] -> Bool
 isPalindrome'' = liftM2 (==) id reverse
 
--- P7 (**) Flatten a nested list structure. Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
+-- P7 (**) Flatten a nested list structure. Transform a list, possibly holding lists as elements into a `flat' list 
+-- by replacing each list with its elements (recursively).
 data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
 flatten (List []) = []
@@ -82,12 +84,13 @@ flatten' (List xs) = concatMap flatten' xs
 -- P8 (**) Eliminate consecutive duplicates of list elements.
 compress :: Eq a => [a] -> [a]
 compress [] = []
-compress (x : xs) = fst $ foldr (\el (acc, lastEl) -> if el == lastEl then (acc, el) else (el : acc, el)) ([x], x) xs
+compress (x : xs) = fst $ foldr (\el (acc, lastEl) -> if el == lastEl then (acc, el) else (el : acc, el)) ([], x) xs
 
 compress' :: Eq a => [a] -> [a]
 compress' = map head . group
 
--- P9 (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+-- P9 (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they 
+-- should be placed in separate sublists.
 pack :: Eq a => [a] -> [[a]]
 pack = group
 
